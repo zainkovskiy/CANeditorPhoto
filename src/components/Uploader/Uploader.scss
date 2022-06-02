@@ -1,0 +1,39 @@
+%font-regular{
+  font-family: "montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.8px
+}
+
+.uploader{
+  border: 1px dashed #0c386681;
+  border-radius: 5px;
+  padding: 1rem;
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1rem 0;
+  &__label{
+    background-image: url('https://crm.centralnoe.ru/dealincom/assets/img/cloud-computing.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
+  &__input{
+    display: none;
+  }
+  &__text{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    @extend %font-regular;
+    color: #737373;
+    pointer-events: none;
+    text-align: center;
+  }
+}

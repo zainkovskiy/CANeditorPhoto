@@ -1,0 +1,46 @@
+{
+  "name": "editorphoto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.0",
+    "@mui/lab": "^5.0.0-alpha.76",
+    "@mui/material": "^5.5.3",
+    "immutable": "^4.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-image-crop": "^10.0.0",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-actions": "^2.6.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.4",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "path": "^0.12.7",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "description": ""
+}
