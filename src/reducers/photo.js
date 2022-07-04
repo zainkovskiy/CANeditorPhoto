@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions"; 
 import { Map, fromJS, List } from "immutable";
 
-import { loader, load, change, swap, web } from 'actions/photo';
+import { loader, load, change, swap, web, deletePhoto, returnPhoto } from 'actions/photo';
 
 const initialState = new Map({
   isLinear: true,
@@ -40,5 +40,21 @@ export const photoReducer = handleActions({
       el.web = action.payload;
     });
     return state.setIn(['object', 'old'], fromJS(currentList));
-  }
+  },
+  [returnPhoto]: (state, action) => {
+    const currentList = state.get('object').toJS().old;
+    currentList.forEach(el => {
+      el.isDeleted = action.payload;
+    });
+    return state.setIn(['object', 'old'], fromJS(currentList));
+  },
+  [deletePhoto]: (state, action) => {
+    const currentList = state.get('object').toJS().old;
+    const find = currentList.find(photo => photo.UID === action.payload);
+    const index = currentList.indexOf(find);
+    find.isDeleted = true;
+    find.web = false;
+    currentList.splice(index, 1, find);
+    return state.setIn(['object', 'old'], fromJS(currentList));
+  },
 }, initialState)

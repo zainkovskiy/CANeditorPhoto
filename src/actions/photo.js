@@ -5,6 +5,8 @@ export const load = createAction('[Photo] load');
 export const change = createAction('[Photo] change');
 export const swap = createAction('[Photo] swap');
 export const web = createAction('[Photo] web');
+export const deletePhoto = createAction('[Photo] deletePhoto');
+export const returnPhoto = createAction('[Photo] returnPhoto');
 
 
 let serverTime = '';
@@ -37,8 +39,8 @@ export function download(action){
   }
 }
 
-export function save(data){
-  return function(dispatch){
+export function save(data) {
+  return function (dispatch) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://hs-01.centralnoe.ru/Project-Selket-Main/Servers/MediaExchange/Controller.php', true);
     xhr.responseType = 'json';
@@ -51,12 +53,12 @@ export function save(data){
   }
 }
 
-export function moderator(){
+export function moderator() {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'https://hs-01.centralnoe.ru/Project-Selket-Main/Servers/MediaExchange/Controller.php', true);
   xhr.responseType = 'json';
   xhr.send(JSON.stringify({
-    action: 'onModeration', 
+    action: 'onModeration',
     reqNumber: reqNumber,
   }));
   xhr.onload = () => {

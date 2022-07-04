@@ -1,27 +1,41 @@
-%font-regular{
+%font-regular {
   font-family: "montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.8px
 }
-.photo-field{
+
+.photo-field {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1rem;
 }
-.photo{
+
+.photo {
   display: flex;
   flex-direction: column;
   position: relative;
-  &__img{
+  &_remote{
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  &__img {
     width: 100%;
     object-fit: contain;
     height: 200px;
     background-color: #7a7a7a;
     border-radius: 5px 5px 0 0;
     // pointer-events: none;
+    &-wrap{
+      display: flex;
+      &:hover .photo__delete {
+        display: block;
+      }
+    }
   }
-  &__bottom{
+
+  &__bottom {
     border: 1px solid #7a7a7a;
     border-radius: 0 0 5px 5px;
     padding: 0.5rem;
@@ -29,7 +43,8 @@
     flex-direction: column;
     gap: 0.5rem;
   }
-  &__check{
+
+  &__check {
     margin: 0;
     display: flex;
     justify-content: space-between;
@@ -39,16 +54,19 @@
     color: #737373;
     cursor: pointer;
   }
-  &__text{
+
+  &__text {
     @extend %font-regular;
     font-size: 12px;
     color: #737373;
     margin: 0;
-    &_hide{
+
+    &_hide {
       color: transparent;
     }
   }
-  &__mod{
+
+  &__fab {
     position: absolute;
     display: block;
     width: 26px;
@@ -57,23 +75,48 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70%;
+  }
+
+  &__delete {
+    top: 0.5rem;
+    left: 0.5rem;
+    background-image: url("https://crm.centralnoe.ru/dealincom/assets/svg/close.svg");
+    cursor: pointer;
+    background-size: 60%;
+    transition: background-size .3s;
+    display: none;
+
+    &:hover {
+      background-size: 80%;
+    }
+
+    &:active {
+      background-size: 40%;
+    }
+  }
+
+  &__mod {
     pointer-events: none;
     top: 0.5rem;
     right: 0.5rem;
-    &_approved{
+
+    &_approved {
       background-color: #BBED21;
       background-image: url("https://crm.centralnoe.ru/dealincom/assets/img/approved.svg");
     }
-    &_denied{
+
+    &_denied {
       background-color: #ED2121;
       background-image: url("https://crm.centralnoe.ru/dealincom/assets/img/denied.svg");
     }
-    &_pending{
+
+    &_pending {
       background-color: #d5d5d5;
       background-image: url("https://crm.centralnoe.ru/dealincom/assets/img/question-mark.svg");
     }
   }
-  &_over{
+
+  &_over {
     opacity: 0.3;
   }
 }

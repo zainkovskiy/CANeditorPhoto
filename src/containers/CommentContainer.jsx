@@ -8,7 +8,7 @@ import { Comment } from 'components/Comment';
 class CommentContainer extends PureComponent{
   componentDidMount(){
     const { getComment } = this.props;
-    getComment()
+    // getComment()
   }
 
   handelClick = (bool, description) => {

@@ -8,7 +8,7 @@ import { Photo } from 'components/Photo';
 import { DialogMain } from 'components/DialogMain';
 import { DialogPhoto } from 'components/DialogPhoto';
 
-import { download, change, swap, web, loader, save, moderator } from 'actions/photo';
+import { download, change, swap, web, loader, save, moderator, deletePhoto, returnPhoto } from 'actions/photo';
 
 class PhotoFieldContainer extends PureComponent {
   state = {
@@ -37,6 +37,9 @@ class PhotoFieldContainer extends PureComponent {
   handleChange = (event, uid) => {
     const { change } = this.props;
     change({ event: event, uid: uid })
+    this.setState({ changes: true })
+  }
+  handelRemovePhoto = () => {
     this.setState({ changes: true })
   }
   dragStartHandler = (event, photo) => {
@@ -75,11 +78,11 @@ class PhotoFieldContainer extends PureComponent {
   }
   handleModeration = () => {
     const { sendOnModeration } = this.props;
-    this.setState({clickMod: true});
+    this.setState({ clickMod: true });
     sendOnModeration();
   }
   render() {
-    const { isLinear, photos, web, isUploading } = this.props;
+    const { isLinear, photos, web, isUploading, object, deletePhoto, returnPhoto } = this.props;
     return (
       <>
         {
@@ -94,10 +97,19 @@ class PhotoFieldContainer extends PureComponent {
                         <ButtonGroup variant="text" aria-label="text button group">
                           <Button
                             onClick={() => { web(true), this.setState({ changes: true }) }}
-                          >Установить WEB</Button>
+                          >Установить WEB
+                          </Button>
                           <Button
                             onClick={() => { web(false), this.setState({ changes: true }) }}
-                          >Снять WEB</Button>
+                          >Снять WEB
+                          </Button>
+                          {
+                            object.isGod &&
+                            <Button
+                              onClick={() => { returnPhoto(false), this.setState({ changes: true }) }}
+                            >Вернуть удаленные
+                            </Button>
+                          }
                         </ButtonGroup>
                       </div>
                       <div className="buttons__right">
@@ -135,6 +147,7 @@ class PhotoFieldContainer extends PureComponent {
                     <div className='photo-field'>
                       {
                         photos.map(photo =>
+                          (!photo.isDeleted && !object.isGod || object.isGod) &&
                           <Photo
                             key={photo.UID}
                             photo={photo}
@@ -145,7 +158,10 @@ class PhotoFieldContainer extends PureComponent {
                             dragOverHandler={this.dragOverHandler}
                             dropHandler={this.dropHandler}
                             isUploading={isUploading}
-                          />)
+                            deletePhoto={deletePhoto}
+                            handelRemovePhoto={this.handelRemovePhoto}
+                          />
+                        )
                       }
                     </div>
                   </> : <p className='photo__text'>Нет фото</p>
@@ -179,7 +195,9 @@ function mapDispatchToProps(dispatch) {
     web: (checked) => dispatch(web(checked)),
     loader: () => dispatch(loader()),
     save: (object) => dispatch(save(object)),
-    sendOnModeration: () => dispatch(moderator())
+    sendOnModeration: () => dispatch(moderator()),
+    deletePhoto: (UID) => dispatch(deletePhoto(UID)),
+    returnPhoto: (UID) => dispatch(returnPhoto(UID)),
   }
 }
 
