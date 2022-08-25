@@ -4,8 +4,8 @@ export const setComment = createAction('[Comment], setComment');
 export const save = createAction('[Comment], save');
 export const status = createAction('[Comment], status');
 
-export function getComment(){
-  return function(dispatch){
+export function getComment() {
+  return function (dispatch) {
     const requestOptions = {
       method: 'POST',
       mode: 'cors',
@@ -27,8 +27,8 @@ export function getComment(){
   }
 }
 
-export function sendCommit(comment){
-  return function(dispatch){
+export function sendCommit(comment) {
+  return function (dispatch) {
     const requestOptions = {
       method: 'POST',
       mode: 'cors',

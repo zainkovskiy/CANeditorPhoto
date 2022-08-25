@@ -10,30 +10,30 @@ export const returnPhoto = createAction('[Photo] returnPhoto');
 
 
 let serverTime = '';
-export function download(action){
-  return function (dispatch){
+export function download(action) {
+  return function (dispatch) {
     fetch('https://hs-01.centralnoe.ru/Project-Selket-Main/Servers/MediaExchange/Controller.php', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        action: action, 
+        action: action,
         reqNumber: reqNumber,
         servertime: serverTime,
         userId: userId
       })
-    }).then(res =>{
+    }).then(res => {
       res.json().then(data => {
         serverTime = data.servertime;
         console.log(data);
         if (action === 'update') {
           data.old = data.old.concat(data.new);
           dispatch(load(data));
-        } else if (action === 'get'){
+        } else if (action === 'get') {
           dispatch(load(data));
           dispatch(loader())
-        }        
+        }
       })
     })
   }

@@ -1,41 +1,48 @@
-%font-regular{
+%font-regular {
   font-family: "montserrat", sans-serif;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.8px
 }
 
-.comment{
+.comment {
   width: 100%;
   margin: 0 0 1rem 0;
-  &__header{
+
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 0 0.5rem 0;
     gap: 0.5rem;
     flex-wrap: wrap;
-    &_wrap{
+
+    &_wrap {
       display: flex;
       gap: 0.5rem;
       align-items: center
     }
   }
-  &__title{
+
+  &__title {
     @extend %font-regular;
     font-size: 14px;
-  }  
-  &__error{
+  }
+
+  &__error {
     color: red;
   }
-  &__field{
+
+  &__field {
     width: 100%;
     resize: none;
     padding: 0.5rem;
     @extend %font-regular;
     box-sizing: border-box;
+    white-space: pre-line;
   }
-  &__status{
+
+  &__status {
     display: block;
     width: 20px;
     height: 20px;
@@ -44,11 +51,13 @@
     background-position: center;
     background-size: 70%;
     pointer-events: none;
-    &_approved{
+
+    &_approved {
       background-color: #BBED21;
       background-image: url("https://crm.centralnoe.ru/dealincom/assets/img/approved.svg");
     }
-    &_denied{
+
+    &_denied {
       background-color: #ED2121;
       background-image: url("https://crm.centralnoe.ru/dealincom/assets/img/denied.svg");
     }
