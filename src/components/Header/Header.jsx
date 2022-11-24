@@ -5,7 +5,7 @@ import './Header.scss';
 
 export function Header () {
   const openAttention = () => {
-    BX.SidePanel.Instance.open(`https://crm.centralnoe.ru/attention/?reqNumber=&dealId=0&source=`, { animationDuration: 300, width: document.getElementById('root').clientWidth })
+    BX.SidePanel.Instance.open(`https://crm.centralnoe.ru/attention/?reqNumber=${reqNumber}&dealId=0&source=`, { animationDuration: 300, width: document.getElementById('root').clientWidth })
   }
   return (<div className='header'>
             <img className='header__logo' src="https://crm.centralnoe.ru/dealincom/assets/logo_can.jpg" alt="logo"/>
